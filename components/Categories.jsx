@@ -1,9 +1,9 @@
 import React from 'react'
 
-const PostWidgetCategories = () => {
+const Categories = () => {
   return (
-    <div>PostWidgeCategories</div>
+    <div>Categories</div>
   )
 }
 
-export default PostWidgetCategories
+export default Categories

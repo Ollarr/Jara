@@ -1,7 +1,10 @@
 import Head from 'next/head'
-import { PostCard, PostWidget, Categories } from '../components';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
+// import { PostCard, PostWidget, Categories } from '../../components';
+import { PostCard } from '/Users/user/Projects/jara/components/';
+import { PostWidget } from '/Users/user/Projects/jara/components/';
+import { Categories } from '/Users/user/Projects/jara/components/';
+
+
 const posts = [
   { title: 'Once upon a life', excerpt: 'once upon a life'},
   { title: 'Once upon a life', excerpt: 'once upon a life'},
