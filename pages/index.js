@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { PostCard, PostWidget, Categories } from '../components';
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
 const posts = [
   { title: 'Once upon a life', excerpt: 'once upon a life'},
   { title: 'Once upon a life', excerpt: 'once upon a life'},
@@ -15,7 +15,7 @@ export default function Home() {
       </Head>
       <div className = "grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className='lg:col-span-8 col-span-1'>
-        {posts.map((posts, index) =>(
+        {posts.map((post) =>(
           <PostCard post = {post} key = {post.title} />
         ))}
         </div>
