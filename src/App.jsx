@@ -1,9 +1,10 @@
 import './App.css';
+import TopNavBar from './components/topnav/TopNavBar';
 
 function App() {
   return (
     <div className="App">
-      <h1>JARA</h1>
+      <TopNavBar />
     </div>
   );
 }
