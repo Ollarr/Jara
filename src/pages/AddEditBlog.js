@@ -2,7 +2,7 @@ import React from 'react'
 
 const AddEditBlog = () => {
   return (
-    <div>AddEditBlog</div>
+    <div className='text-center'>AddEditBlog</div>
   )
 }
 

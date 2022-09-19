@@ -6,12 +6,12 @@
 
 body {
   margin: 0;
-  font-family: "Nunito";
+  font-family: "Nunito" 'Grillmaster Extwide';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+} */

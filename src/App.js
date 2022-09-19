@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Home from './pages/Home';
 import Header from './components/header/Header';
-import './App.css';
+// import './App.css';
 import "./style.scss"
 import "./media-query.css"
 import { Routes, Route} from "react-router-dom";
