@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { useState } from 'react';
 import Home from './pages/Home';
 import Header from './components/header/Header';
@@ -16,6 +17,7 @@ import NotFound from './pages/NotFound';
 function App() {
   const [active, setActive] = useState("home");
   return (
+    // eslint-disable-next-line react/react-in-jsx-scope
     <div className="App">
       <Header setActive={setActive} active={active} />
       <ToastContainer position='left-center' />

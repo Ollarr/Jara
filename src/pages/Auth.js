@@ -1,54 +1,70 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-empty */
 // import { async } from '@firebase/util';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import React, { useState } from 'react';
-import { toast } from 'react-toastify';
-import { auth } from '../firebase';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
-import image from '../image.png';
-
-
+import image from '../image.png'
 
 const initialState = {
   firstName: "",
-  lastName:"",
+  lastName: "",
   email: "",
   password: "",
-  confirmPassword: ""
-}
+  confirmPassword: "",
+};
 
 // eslint-disable-next-line react/prop-types
-const Auth = ({setActive}) => {
+const Auth = ({ setActive, setUser }) => {
   const [state, setState] = useState(initialState);
   const [signUp, setSignUp] = useState(false);
-  const {firstName, lastName, email, password,  confirmPassword} = state;
+
+  const { email, password, firstName, lastName, confirmPassword } = state;
+
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
-  
-  const navigate = useNavigate();
-  const handleAuth = async (e)=> {
-    e.preventDefault();
-    if(!signUp){
 
-    } else{
+  const handleAuth = async (e) => {
+    e.preventDefault();
+    if (!signUp) {
+      if (email && password) {
+        const { user } = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        setUser(user);
+        setActive("home");
+      } else {
+        return toast.error("All fields are mandatory to fill");
+      }
+    } else {
       if (password !== confirmPassword) {
-        return toast.error("passwords do not match");
+        return toast.error("Password don't match");
       }
-      if(firstName && lastName && password){
+      if (firstName && lastName && email && password) {
         const { user } = await createUserWithEmailAndPassword(
-          auth, 
-          email, 
-          password);
-        await updateProfile(user, {displayName: `${firstName} ${lastName}`});
-        setActive("home")
-      }
-      else{
-        return toast.error('All fields are mandatory');
+          auth,
+          email,
+          password
+        );
+        await updateProfile(user, { displayName: `${firstName} ${lastName}` });
+        setActive("home");
+      } else {
+        return toast.error("All fields are mandatory to fill");
       }
     }
     navigate("/");
-  }
+  };
   return (
     <>
     <div className=" mt-8 mb-16 flex max-w-sm mx-auto overflow-hidden bg-slate-50 rounded-lg shadow-lg dark:bg-gray-900 lg:max-w-4xl">
@@ -122,7 +138,8 @@ const Auth = ({setActive}) => {
   <div className="flex items-center justify-between mt-4">
 
       <p className="text-xs text-gray-500 uppercase dark:text-gray-400 text-center" >Don&apos;t have an account?
-      <span className="hover:underline" style={{textDecoration: "none", cursor: "pointer", }} onClick={() => setSignUp(true)}>&emsp;&emsp;Sign up</span>
+{      // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/no-static-element-interactions
+}      <span className="hover:underline" style={{textDecoration: "none", cursor: "pointer", }} onClick={() => setSignUp(true)}>&emsp;&emsp;Sign up</span>
       </p>
     </div>
     </>
@@ -131,7 +148,8 @@ const Auth = ({setActive}) => {
    <div className="flex items-center justify-between mt-4">
 
       <p className="text-xs text-gray-500 uppercase dark:text-gray-400 text-center" >Already have an account?
-      <span className="hover:underline" style={{textDecoration: "none", cursor: "pointer"}} onClick={() => setSignUp(false)}>&emsp;&emsp;Sign in</span>
+{      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+}      <span className="hover:underline" style={{textDecoration: "none", cursor: "pointer"}} onClick={() => setSignUp(false)}>&emsp;&emsp;Sign in</span>
       </p>
 
     </div>
